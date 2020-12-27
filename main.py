@@ -1,20 +1,20 @@
 import datetime
 import multiprocessing
 
-def SumOfMilions(unit):
+def SumOfMilions(unit, divy):
     sum = 0
     rangeLimit = unit * 1000000
     for index in range(rangeLimit):
-        if index % 17 == 0:
+        if index % divy == 0:
             sum += index
-    print("Suma numerelor divizibile cu 17 mai mici decat " + str(rangeLimit)\
+    print("Suma numerelor divizibile cu " + str(divy) +" mai mici decat " + str(rangeLimit)\
           + " este: " + str(sum))
 
 if __name__ == "__main__":
         start = datetime.datetime.now()
 
-        SumOfMilions(210)
-        SumOfMilions(119)
+        SumOfMilions(210, 19)
+        SumOfMilions(119, 25)
 
         stop = datetime.datetime.now()
 
@@ -23,8 +23,8 @@ if __name__ == "__main__":
 
         start = datetime.datetime.now()
 
-        process1 = multiprocessing.Process(target=SumOfMilions, args=[210])
-        process2 = multiprocessing.Process(target=SumOfMilions, args=[119])
+        process1 = multiprocessing.Process(target=SumOfMilions, args=[210, 19])
+        process2 = multiprocessing.Process(target=SumOfMilions, args=[119, 25])
         process1.start()
         process2.start()
         process1.join()
